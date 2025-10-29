@@ -1,0 +1,32 @@
+---
+title: "About"
+output: html_document
+---
+
+# About Me
+
+Hi! I’m **Bing Li**, currently pursuing my Master’s in **Biostatistics** at **Columbia University**.  
+My academic path bridges data science, public health, and statistical computing.  
+I’m especially interested in applying machine learning and data visualization to real-world biomedical data.
+
+## Academic Background
+- **M.S. in Biostatistics**, Columbia University, Mailman School of Public Health  
+- **B.S. in Information Management and Information Systems**, Beijing University of Technology
+
+## Research & Work Interests
+- Multimodal data analysis and fusion  
+- Predictive modeling for biomedical research  
+- Public opinion and health informatics  
+- Interactive dashboards for data storytelling  
+
+## Skills
+- **Programming:** R, Python, SQL, Java  
+- **Statistical tools:** Stata, SAS, SPSS  
+- **Other tools:** Git/GitHub, Neo4j, Excel  
+
+## Outside the Lab
+I have a background in Chinese ethnic dance (Level 10 certification) and love combining discipline from dance with the logic of data science.  
+I also enjoy photography, cooking, and exploring NYC.
+
+> 📫 **Email:** bli3175@columbia.edu  
+> 💻 **GitHub:** [BonnieLee3175](https://github.com/BonnieLee3175)

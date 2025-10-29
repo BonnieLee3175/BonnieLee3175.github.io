@@ -1,0 +1,45 @@
+---
+title: "Resume"
+output: html_document
+---
+
+# Resume – **Bing Li**
+
+## Education
+- **Columbia University**, New York, NY  
+  Master of Science in Biostatistics, expected 2027
+
+- **Beijing University of Technology**, Beijing, China  
+  Bachelor of Management in Information Management and Information Systems, 2025
+
+## Experience
+### Institute of Computing Technology, Chinese Academy of Sciences  
+**Research Assistant** – 2025  
+- Assisted in multimodal data processing for food and nutrition research  
+- Conducted literature review and supported model design
+
+### Zhongkuang Anxin Technology Co., Ltd.  
+**Software Engineer Assistant** – 2024  
+- Assisted in software documentation, database design, and testing  
+- Helped with system debugging and technical documentation
+
+### China Electronics Engineering Design Institute  
+**Research Assistant** – 2024  
+- Supported data collection and analysis  
+- Assisted with technical reporting and project summaries
+
+### Beijing University of Technology  
+**Undergraduate Research Project** – 2023–2024  
+- Participated in a study on maternal blood pressure and birth outcomes  
+- Conducted data cleaning, regression analysis, and results interpretation
+
+## Skills
+- **Programming:** R, Python, Java, C/C++  
+- **Statistical tools:** Stata, SAS, SPSS, Excel  
+- **Visualization:** ggplot2, plotly, flexdashboard  
+- **Version control:** Git/GitHub
+
+## Activities
+- Energy Economy Competition participant  
+- Volunteer at Fitness Association  
+- Chinese Ethnic Dance – Level 10 Certification

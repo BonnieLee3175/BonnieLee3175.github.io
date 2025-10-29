@@ -1,0 +1,25 @@
+---
+title: "Home"
+output: html_document
+---
+
+# Hi, I'm **Bing Li**
+
+Welcome to my website!  
+I’m a graduate student in **Biostatistics at Columbia University**, passionate about data analysis, reproducible research, and statistical modeling.  
+
+This site includes my **[About](about.html)** page and **[Resume](resume.html)**.  
+Feel free to explore my academic journey and recent projects.
+
+## What I Do
+- Data wrangling and visualization in R (tidyverse)
+- Reproducible reporting with R Markdown / Quarto
+- Machine learning and modeling for health data
+- Building interactive dashboards with plotly + flexdashboard
+
+## Recent Projects
+- Public opinion recognition based on multimodal data fusion
+- Modeling maternal blood pressure trajectories and birth outcomes
+- Interactive visualizations for epidemiological studies
+
+> Contact me via the email and GitHub links in the top navigation bar.
