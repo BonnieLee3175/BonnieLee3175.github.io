@@ -3,23 +3,22 @@ title: "Home"
 output: html_document
 ---
 
-# Hi, I'm **Bing Li**
+# Welcome
 
-Welcome to my website!  
-I’m a graduate student in **Biostatistics at Columbia University**, passionate about data analysis, reproducible research, and statistical modeling.  
+<img src="images/hello.jpg" alt="Hello image"
+     style="width:160px; display:block; margin-left:0; margin-right:auto;">
 
-This site includes my **[About](about.html)** page and **[Resume](resume.html)**.  
-Feel free to explore my academic journey and recent projects.
+Hello, I’m **Bing Li**.  
+I’m currently studying **Biostatistics at Columbia University**.  
+This website briefly introduces my background and academic experience.
 
-## What I Do
-- Data wrangling and visualization in R (tidyverse)
-- Reproducible reporting with R Markdown / Quarto
-- Machine learning and modeling for health data
-- Building interactive dashboards with plotly + flexdashboard
+     
+Please visit the **[About](about.html)** and **[Resume](resume.html)** pages for more details.
 
-## Recent Projects
-- Public opinion recognition based on multimodal data fusion
-- Modeling maternal blood pressure trajectories and birth outcomes
-- Interactive visualizations for epidemiological studies
+## Interests
+- Statistical modeling and data analysis  
+- Reproducible research using R Markdown  
+- Data visualization and applied research in public health  
 
-> Contact me via the email and GitHub links in the top navigation bar.
+## Contact
+You can find my email and GitHub links in the top navigation bar.

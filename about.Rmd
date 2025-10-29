@@ -10,7 +10,7 @@ My academic path bridges data science, public health, and statistical computing.
 I’m especially interested in applying machine learning and data visualization to real-world biomedical data.
 
 ## Academic Background
-- **M.S. in Biostatistics**, Columbia University, Mailman School of Public Health  
+- **M.S. in Biostatistics**, Columbia University, Mailman School of Public Health *(expected 2027)*  
 - **B.S. in Information Management and Information Systems**, Beijing University of Technology
 
 ## Research & Work Interests
@@ -24,9 +24,39 @@ I’m especially interested in applying machine learning and data visualization 
 - **Statistical tools:** Stata, SAS, SPSS  
 - **Other tools:** Git/GitHub, Neo4j, Excel  
 
+---
+
 ## Outside the Lab
-I have a background in Chinese ethnic dance (Level 10 certification) and love combining discipline from dance with the logic of data science.  
-I also enjoy photography, cooking, and exploring NYC.
+
+Before diving into data and models, I like to spend time with my little dog — **Bengbeng** 🐶.  
+He brings endless joy (and sometimes chaos) to my study days!
+
+<div style="text-align:center; margin-top:12px; margin-bottom:24px;">
+  <img src="images/bengbeng.jpg" alt="My dog Bengbeng"
+       style="width:320px; border-radius:14px; box-shadow:2px 2px 6px rgba(0,0,0,0.2);">
+</div>
+
+## Outside the Lab
+I have a background in Chinese ethnic dance (Level 10 certification) and love combining discipline from dance with the logic of data science. I also enjoy fitness, photography, cooking, and exploring NYC.
+
+<table style="border-collapse:separate; border-spacing:24px 0; margin-top:8px;">
+  <tr>
+    <td style="text-align:center; vertical-align:top;">
+      <img src="images/dance.jpg" alt="Dancing"
+           style="width:260px; max-width:100%; height:auto; border-radius:12px; box-shadow:2px 2px 6px rgba(0,0,0,0.15);">
+      <br>
+      <span style="font-size:0.9em; color:#555;">Chinese ethnic dance has been part of my life since childhood.</span>
+    </td>
+    <td style="text-align:center; vertical-align:top;">
+      <img src="images/gym.jpg" alt="Gym / Fitness"
+           style="width:260px; max-width:100%; height:auto; border-radius:12px; box-shadow:2px 2px 6px rgba(0,0,0,0.15);">
+      <br>
+      <span style="font-size:0.9em; color:#555;">Fitness helps me maintain both physical and mental strength.</span>
+    </td>
+  </tr>
+</table>
+
+---
 
 > 📫 **Email:** bli3175@columbia.edu  
 > 💻 **GitHub:** [BonnieLee3175](https://github.com/BonnieLee3175)
