@@ -1,0 +1,189 @@
+---
+title: "NY NOAA – Interactive Dashboard"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(lubridate)
+library(plotly)
+library(p8105.datasets)
+
+# Load dataset
+data("ny_noaa", package = "p8105.datasets")
+
+# Main parameters – change anytime
+PARAM_YEAR  <- 2010         # Default year for line & bar plots
+PARAM_MONTH <- 7            # Default month for daily line plot
+LOOKBACK_YEARS <- 5         # Years used for boxplot summary
+
+# Convert units (tenths of °C → °C; tenths of mm → mm)
+ny <- ny_noaa |>
+  mutate(
+    date    = ymd(date),
+    tmax_c  = suppressWarnings(as.numeric(tmax)) / 10,
+    tmin_c  = suppressWarnings(as.numeric(tmin)) / 10,
+    prcp_mm = suppressWarnings(as.numeric(prcp)) / 10
+  )
+
+# Pick station with highest completeness for Tmax over the lookback window
+recent_start <- make_date(PARAM_YEAR - LOOKBACK_YEARS + 1, 1, 1)
+recent_end   <- make_date(PARAM_YEAR, 12, 31)
+
+TOP_STATION <- ny |>
+  filter(date >= recent_start, date <= recent_end) |>
+  group_by(id) |>
+  summarise(comp_rate = mean(!is.na(tmax_c)), .groups = "drop") |>
+  arrange(desc(comp_rate)) |>
+  slice(1) |>
+  pull(id)
+
+ny_top <- ny |> filter(id == TOP_STATION)
+
+# Month color palette (12 distinct colors)
+month_pal <- grDevices::colorRampPalette(
+  c("#2E86DE","#17A589","#52BE80","#F4D03F","#E67E22",
+    "#E74C3C","#AF7AC5","#5DADE2","#48C9B0","#F5B041",
+    "#CD6155","#85929E")
+)(12)
+```
+
+Daily Temperature — `r PARAM_YEAR`-`r sprintf("%02d", PARAM_MONTH)` (Station: `r TOP_STATION`)
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r fig.height=6}
+# One-month daily series
+daily_one_month <- ny_top |>
+  filter(year(date) == PARAM_YEAR, month(date) == PARAM_MONTH) |>
+  arrange(date)
+
+# Line for Tmax; ribbon for Tmin–Tmax when both exist
+plt_line <- ggplot(daily_one_month, aes(x = date)) +
+  { if (any(!is.na(daily_one_month$tmax_c) & !is.na(daily_one_month$tmin_c)))
+      geom_ribbon(aes(ymin = tmin_c, ymax = tmax_c),
+                  fill = "#A9CCE3", alpha = 0.35, linewidth = 0) } +
+  geom_line(aes(y = tmax_c), linewidth = 1.2, color = "#2E86DE") +
+  labs(x = NULL, y = "Temperature (°C)",
+       title = sprintf("Daily Tmax (with Tmin range when available) — %d-%02d",
+                       PARAM_YEAR, PARAM_MONTH)) +
+  theme_minimal(base_size = 13)
+
+ggplotly(plt_line, tooltip = c("x","y")) |>
+  layout(
+    hovermode = "x unified",
+    title = list(x = 0),
+    xaxis = list(title = ""),
+    yaxis = list(title = "Temperature (°C)"),
+    template = "plotly_white",
+    font = list(family = "Arial", size = 14),
+    hoverlabel = list(bgcolor = "white")
+  )
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+### Tmax distribution by month — last `r LOOKBACK_YEARS` years (boxplot)
+```{r}
+# Window for the multi-year month-wise boxplot
+start_multi <- make_date(PARAM_YEAR - LOOKBACK_YEARS + 1, 1, 1)
+end_multi   <- make_date(PARAM_YEAR, 12, 31)
+
+box_multi <- ny_top |>
+  filter(date >= start_multi, date <= end_multi, !is.na(tmax_c)) |>
+  mutate(mon_num = month(date),
+         mon = factor(mon_num, levels = 1:12, labels = month.abb))
+
+# Build month-wise interactive boxplots (one trace per month for nicer coloring)
+p_box <- plot_ly()
+for (m in 1:12) {
+  df_m <- box_multi |> filter(mon_num == m)
+  if (nrow(df_m) > 0) {
+    p_box <- add_trace(
+      p_box,
+      type = "box",
+      x = df_m$mon,
+      y = df_m$tmax_c,
+      name = month.abb[m],
+      marker = list(color = month_pal[m]),
+      line = list(width = 1),
+      boxmean = TRUE,
+      boxpoints = "outliers",
+      hovertemplate = paste0(
+        "<b>", month.abb[m], "</b><br>",
+        "Tmax: %{y:.1f} °C<extra></extra>"
+      ),
+      showlegend = FALSE
+    )
+  }
+}
+
+p_box |>
+  layout(
+    title = paste0("Tmax Distribution (", year(start_multi), "–", year(end_multi),
+                   ") — Station: ", TOP_STATION),
+    xaxis = list(title = "Month", categoryorder = "array",
+                 categoryarray = month.abb),
+    yaxis = list(title = "Temperature (°C)"),
+    hovermode = "x unified",
+    template = "plotly_white",
+    font = list(family = "Arial", size = 14),
+    hoverlabel = list(bgcolor = "white")
+  )
+```
+
+### Chart C
+
+### Monthly total precipitation — `r PARAM_YEAR`
+```{r}
+# pastel palette for 12 months
+month_pal <- RColorBrewer::brewer.pal(12, "Set3")  # soft multi-color
+
+# Aggregate monthly precipitation for the selected year
+year_df <- ny_top |>
+  dplyr::filter(lubridate::year(date) == PARAM_YEAR) |>
+  dplyr::mutate(
+    mon = factor(lubridate::month(date), levels = 1:12, labels = month.abb),
+    prcp_mm = suppressWarnings(as.numeric(prcp)) / 10  # tenths of mm -> mm
+  )
+
+prcp_month <- year_df |>
+  dplyr::group_by(mon) |>
+  dplyr::summarise(total_prcp = sum(prcp_mm, na.rm = TRUE), .groups = "drop")
+
+# Interactive bar chart with soft pastel colors
+plot_ly(
+  data = prcp_month,
+  x = ~mon,
+  y = ~total_prcp,
+  type = "bar",
+  marker = list(
+    color = month_pal,
+    line = list(color = "rgba(0,0,0,0.12)", width = 1)
+  ),
+  text = ~sprintf("%.0f mm", total_prcp),
+  textposition = "outside",
+  hovertemplate = "<b>%{x}</b><br>Total: %{y:.0f} mm<extra></extra>"
+) |>
+  layout(
+    title = paste0("Monthly Total Precipitation — ", PARAM_YEAR,
+                   " (Station: ", TOP_STATION, ")"),
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Precipitation (mm)"),
+    hovermode = "x unified",
+    uniformtext = list(minsize = 10, mode = "hide"),
+    template = "plotly_white",
+    font = list(family = "Arial", size = 14),
+    hoverlabel = list(bgcolor = "white")
+  )
+```
