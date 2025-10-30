@@ -24,7 +24,7 @@ Please visit the **[About](about.html)** and **[Resume](resume.html)** pages for
 This dashboard presents interactive visualizations of New York NOAA weather data,  
 including daily temperature, monthly distributions, and total precipitation.
 
-<a class="btn btn-primary" href="Dashboard.html" role="button">Open Dashboard</a>
+<a class="btn btn-primary" href="dashboard.html" role="button">Open Dashboard</a>
 
 ## Interests
 - Statistical modeling and data analysis  
