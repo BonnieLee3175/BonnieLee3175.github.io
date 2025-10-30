@@ -3,8 +3,8 @@ title: "Home"
 output:
   html_document:
     theme: cerulean
-    toc: true          # 开启目录
-    toc_float: true    # 目录浮动并随滚动高亮
+    toc: true          
+    toc_float: true    
 ---
 
 # Welcome
