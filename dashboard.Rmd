@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
-    source: embed
+    source_code: embed
 ---
 
 ```{r setup, include=FALSE}
@@ -13,6 +13,7 @@ library(tidyverse)
 library(lubridate)
 library(plotly)
 library(p8105.datasets)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 # Load dataset
 data("ny_noaa", package = "p8105.datasets")
